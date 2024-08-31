@@ -1,0 +1,3 @@
+1st change =  database name (bookstore, RentalSystem)
+
+in user model = books == equipments
