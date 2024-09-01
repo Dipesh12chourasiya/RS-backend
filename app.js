@@ -2,12 +2,18 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 require("./connention/conn");
+const userRoute = require("./routes/user");
+const equipmentRoute = require("./routes/equipment");
 
+// Middlewares
+app.use(express.json());
 
 // Routes
-app.get("/" , (req,res)=>{
-    res.send("Hellow from backend");
-})
+// app.get("/" , (req,res)=>{
+//     res.send("Hellow from backend");
+// })
+app.use("/api/v1" , userRoute);
+app.use("/api/v1", equipmentRoute);
 
 // creating port 
 app.listen(process.env.PORT, () =>{

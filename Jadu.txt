@@ -1,3 +1,5 @@
 1st change =  database name (bookstore, RentalSystem)
 
 in user model = books == equipments
+
+we will do sign in with the help of  (  Email and password   )       not username and password
