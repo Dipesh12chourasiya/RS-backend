@@ -20,9 +20,11 @@ router.post("/add-equipment", authenticateToken, async (req, res) => {
     const equipment = new Equipment({
       url: req.body.url,
       title: req.body.title,
-      owner: req.body.owner,
+      condition: req.body.condition,
+      location: req.body.location,
       price: req.body.price,
       desc: req.body.desc,
+      isAvailable: req.body.isAvailable,
       language: req.body.language,
     });
 
