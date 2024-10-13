@@ -33,7 +33,6 @@ router.put("/remove-equipment-from-favorite", authenticateToken, async (req, res
 
     if (isEquipmentFavorite) {
       await User.findByIdAndUpdate(id, {$pull:{favorites: equipment_id}})
-
     }
     
     return res.status(200).json({ message: "Equipment is removed from favorites." });

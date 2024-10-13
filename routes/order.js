@@ -39,9 +39,9 @@ router.get("/get-order-history", authenticateToken, async (req, res) => {
     const { id } = req.headers;
     const userData = await User.findById(id).populate({
       path: "orders",
-      populate: { path: "equipments" },
+      populate: { path: "equipment" },
     });
-
+    // console.log("userOrders : " + userData.orders.equipment);
     const ordersData = userData.orders.reverse();
     return res.json({ status: "Success", data: ordersData });
   } catch (error) {
@@ -60,6 +60,7 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
         path: "user",
       })
       .sort({ createdAt: -1 });
+
     return res.json({
       status: "Success",
       data: userData,
