@@ -14,7 +14,6 @@ const equipmentSchema = new mongoose.Schema(
     },
     condition: {
       type: String,
-      required: true,
     },
     location: {
       type: String,
