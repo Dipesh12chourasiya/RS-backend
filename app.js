@@ -14,9 +14,9 @@ app.use(express.json());
 // Enable CORS
 app.use(cors());
 
-// Routes
+// Routes 
 // app.get("/" , (req,res)=>{
-//     res.send("Hellow from backend");
+//     res.send("Hellow from backend"); // for testing
 // })
 
 app.use("/api/v1" , userRoute);
