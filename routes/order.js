@@ -85,4 +85,58 @@ router.put("/update-status/:id", authenticateToken, async (req, res) => {
   }
 });
 
+// get full user details (admin)
+router.get("/admin/user/:id", authenticateToken, async (req, res) => {
+  try {
+    const adminId = req.headers.id;
+    const admin = await User.findById(adminId);
+
+    if (admin.role !== "admin") {
+      return res.status(403).json({ message: "Access denied" });
+    }
+
+    const user = await User.findById(req.params.id)
+      .populate({
+        path: "orders",
+        populate: { path: "equipment" },
+      });
+
+    return res.json({ status: "Success", data: user });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// for dashboard of admin
+router.get("/admin/stats", authenticateToken, async (req, res) => {
+  try {
+    const users = await User.countDocuments();
+    const equipments = await Equipment.countDocuments();
+    const orders = await Order.countDocuments();
+
+    return res.json({
+      users,
+      equipments,
+      orders,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Error" });
+  }
+});
+
+// filter orders
+router.get("/admin/orders/:status", authenticateToken, async (req, res) => {
+  try {
+    const orders = await Order.find({ status: req.params.status })
+      .populate("user")
+      .populate("equipment");
+
+    return res.json({ status: "Success", data: orders });
+  } catch (error) {
+    return res.status(500).json({ message: "Error" });
+  }
+});
+
+
+
 module.exports =router;

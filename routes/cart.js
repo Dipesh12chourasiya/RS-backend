@@ -28,8 +28,7 @@ router.put("/add-to-cart", authenticateToken, async (req, res) => {
 });
 
 // remove Equipments
-router.put(
-  "/remove-from-cart/:equipment_id",
+router.put( "/remove-from-cart/:equipment_id",
   authenticateToken,
   async (req, res) => {
     try {
