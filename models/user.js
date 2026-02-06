@@ -33,10 +33,9 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "admin"],
     },
     favorites: [
-      // he uses favourites instead of right spelling
       {
         type: mongoose.Types.ObjectId,
-        ref: "equipments", // books
+        ref: "equipments", 
       },
     ],
     cart: [
